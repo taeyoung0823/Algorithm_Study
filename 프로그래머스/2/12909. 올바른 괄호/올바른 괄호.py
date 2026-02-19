@@ -1,22 +1,19 @@
 def solution(s):
+    stack=[]
     answer = True
-    cnt1=s.count('(')
-    cnt2=s.count(')')
     
-    if s[0] != '(':
+    if s[0]==')' or not s:
         return False
-    elif s[-1] != ')':
-        return False
-    elif cnt1!=cnt2:
-        return False
-    else:
-        cnt1=0
-        cnt2=0
-        for i in range(len(s)):
-            if s[i]=='(':
-                cnt1+=1
-            if s[i]==')':
-                cnt2+=1
-            if cnt2>cnt1:
+    for i in range(len(s)):
+        if s[i]=='(':
+            stack.append(s[i])
+        if s[i]==')':
+            if not stack:
                 return False
+            else:
+                stack.pop()
+    if not stack:
+        return True
+    return False
+
     return True
