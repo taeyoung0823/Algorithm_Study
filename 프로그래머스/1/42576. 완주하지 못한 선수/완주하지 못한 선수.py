@@ -1,5 +1,9 @@
-from collections import Counter
-
 def solution(participant, completion):
-    diff = Counter(participant) - Counter(completion)
-    return next(iter(diff))
+    participant.sort()
+    completion.sort()
+    
+    for i in range(len(completion)):
+        if participant[i] != completion[i]:
+            return participant[i]
+    
+    return participant[-1]
