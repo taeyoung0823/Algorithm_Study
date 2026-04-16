@@ -1,9 +1,13 @@
 def solution(participant, completion):
-    participant.sort()
-    completion.sort()
+    hash_map = {}
     
-    for i in range(len(completion)):
-        if participant[i] != completion[i]:
-            return participant[i]
+    for name in completion:
+        if name in hash_map:
+            hash_map[name] += 1
+        else:
+            hash_map[name] = 1
     
-    return participant[-1]
+    for name in participant:
+        if name not in hash_map or hash_map[name] == 0:
+            return name
+        hash_map[name] -= 1
